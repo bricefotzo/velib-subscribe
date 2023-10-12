@@ -43,7 +43,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Execute script
-      run: python jobs/notify.py "{email}" "{station}"
+      run: python jobs/notifier.py "{email}" "{station}"
 """
     return github_config
 

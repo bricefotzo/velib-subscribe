@@ -29,7 +29,7 @@ jobs:
       - name: Configure the scheduling for ${{ github.event.client_payload.email }}"
         run: |
           ls -la
-          python jobs/schedule.py "${{ github.event.client_payload.email }}" "${{ github.event.client_payload.station }}" "${{ github.event.client_payload.time }}"
+          python jobs/scheduler.py "${{ github.event.client_payload.email }}" "${{ github.event.client_payload.station }}" "${{ github.event.client_payload.time }}"
       - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
