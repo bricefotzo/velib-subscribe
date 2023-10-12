@@ -3,7 +3,6 @@ from utils.ui import render_ui
 from utils.helpers import trigger_github_action, convert_to_local_time
 from db.mongo import add_user, add_or_update_preference, get_user_by_email
 
-
 # Configuration
 CITIES = ["Paris", "Aubervilliers", "Nanterre"]
 
@@ -16,7 +15,7 @@ def main():
             existing_user = get_user_by_email(email)
             if not existing_user:
                 add_user(email, is_premium=False)
-            add_or_update_preference(email, station_name, local_time_slot.strftime('%H:%M'))
+            add_or_update_preference(email, station_name, local_time_slot)
 
             if trigger_github_action(email, station_name, local_time_slot):
                 st.success(

@@ -8,7 +8,7 @@ from api.external import get_dataset_info
 from settings import EMAIL_USER, EMAIL_PASS, GITHUB_TOKEN
 
 
-def convert_to_local_time(time_str: str, from_tz_str: str = "UTC", to_tz_str: str = "Europe/Paris") -> datetime:
+def convert_to_local_time(time_str: str, from_tz_str: str = "UTC", to_tz_str: str = "Europe/Paris") -> str:
     """
     Convert time string from one timezone to another.
 
@@ -21,7 +21,8 @@ def convert_to_local_time(time_str: str, from_tz_str: str = "UTC", to_tz_str: st
         str: The local time in string format "HH:mm".
     """
     # Create a naive datetime object for today with the given time
-    naive_time = datetime.strptime(f"{datetime.now().strftime('%Y-%m-%d')} {time_str}", '%Y-%m-%d %H:%M')
+    print(time_str)
+    naive_time = datetime.strptime(f"{datetime.now().strftime('%Y-%m-%d')} {time_str}", '%Y-%m-%d %H:%M:%S')
 
     # Localize the naive time to the original timezone
     from_tz = timezone(from_tz_str)
@@ -31,7 +32,7 @@ def convert_to_local_time(time_str: str, from_tz_str: str = "UTC", to_tz_str: st
     to_tz = timezone(to_tz_str)
     target_time = localized_time.astimezone(to_tz)
 
-    return target_time
+    return target_time.strftime('%H:%M')
 
 
 def send_email(subject: str, message: str, recipient: str) -> bool:
@@ -93,7 +94,7 @@ def notify_user(email: str, station_name: str) -> bool:
     return send_email("Your Vélib Station Update", message, email)
 
 
-def trigger_github_action(email: str, station_name: str, time_slot: datetime) -> bool:
+def trigger_github_action(email: str, station_name: str, time_slot: str) -> bool:
     """
     Trigger the GitHub action to send the email
 
@@ -115,7 +116,7 @@ def trigger_github_action(email: str, station_name: str, time_slot: datetime) ->
         "client_payload": {
             "email": email,
             "station": station_name,
-            "time": time_slot.strftime("%H:%M")
+            "time": time_slot
         },
     }
 
