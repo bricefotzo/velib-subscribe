@@ -1,7 +1,8 @@
 streamlit==1.27.2
 streamlit-folium==0.15.0
-folium
-pymongo
+folium~=0.14.0
+pymongo~=4.5.0
 python-dotenv
 pandas
-requests
+requests~=2.31.0
+pytz

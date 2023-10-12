@@ -1,5 +1,3 @@
-import os
-from dotenv import load_dotenv
 import streamlit as st
 from utils.ui import render_ui
 from utils.helpers import trigger_github_action, convert_to_local_time
@@ -11,7 +9,7 @@ CITIES = ["Paris", "Aubervilliers", "Nanterre"]
 
 
 def main():
-    _ , station_name, time_slot, email, subscribe_button = render_ui(CITIES)
+    _, station_name, time_slot, email, subscribe_button = render_ui(CITIES)
     local_time_slot = convert_to_local_time(time_slot)
     if subscribe_button:
         try:

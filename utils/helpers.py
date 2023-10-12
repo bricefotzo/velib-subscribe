@@ -7,7 +7,8 @@ import requests
 from api.external import get_dataset_info
 from settings import EMAIL_USER, EMAIL_PASS, GITHUB_TOKEN
 
-def convert_to_local_time(time_str: str, from_tz_str: str ="UTC", to_tz_str: str ="Europe/Paris"):
+
+def convert_to_local_time(time_str: str, from_tz_str: str = "UTC", to_tz_str: str = "Europe/Paris") -> datetime:
     """
     Convert time string from one timezone to another.
 
@@ -31,6 +32,7 @@ def convert_to_local_time(time_str: str, from_tz_str: str ="UTC", to_tz_str: str
     target_time = localized_time.astimezone(to_tz)
 
     return target_time
+
 
 def send_email(subject: str, message: str, recipient: str) -> bool:
     """

@@ -90,7 +90,8 @@ def get_user_by_email(email: str) -> Optional[Dict]:
     """
     try:
         return users_collection.find_one({"email": email})
-    except PyMongoError as e:
+    except PyMongoError as exception:
+        print(f"Exception: {exception}")
         return None
 
 
