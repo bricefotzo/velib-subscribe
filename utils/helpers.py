@@ -2,10 +2,35 @@ import smtplib
 from email.mime.text import MIMEText
 import pandas as pd
 from datetime import datetime
+from pytz import timezone
 import requests
 from api.external import get_dataset_info
 from settings import EMAIL_USER, EMAIL_PASS, GITHUB_TOKEN
 
+def convert_to_local_time(time_str: str, from_tz_str: str ="UTC", to_tz_str: str ="Europe/Paris"):
+    """
+    Convert time string from one timezone to another.
+
+    Args:
+        time_str (str): The time in string format "HH:mm".
+        from_tz_str (str): The string representation of the original timezone.
+        to_tz_str (str): The string representation of the target timezone.
+
+    Returns:
+        str: The local time in string format "HH:mm".
+    """
+    # Create a naive datetime object for today with the given time
+    naive_time = datetime.strptime(f"{datetime.now().strftime('%Y-%m-%d')} {time_str}", '%Y-%m-%d %H:%M')
+
+    # Localize the naive time to the original timezone
+    from_tz = timezone(from_tz_str)
+    localized_time = from_tz.localize(naive_time)
+
+    # Convert to the target timezone
+    to_tz = timezone(to_tz_str)
+    target_time = localized_time.astimezone(to_tz)
+
+    return target_time
 
 def send_email(subject: str, message: str, recipient: str) -> bool:
     """
