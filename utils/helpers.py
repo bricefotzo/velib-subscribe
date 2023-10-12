@@ -21,18 +21,19 @@ def convert_to_local_time(time_str: str, from_tz_str: str = "Europe/Paris", to_t
         str: The local time in string format "HH:mm".
     """
     # Create a naive datetime object for today with the given time
-    print(time_str)
     naive_time = datetime.strptime(f"{datetime.now().strftime('%Y-%m-%d')} {time_str}", '%Y-%m-%d %H:%M:%S')
-
     # Localize the naive time to the original timezone
     from_tz = timezone(from_tz_str)
     localized_time = from_tz.localize(naive_time)
 
     # Convert to the target timezone
     to_tz = timezone(to_tz_str)
+
     target_time = localized_time.astimezone(to_tz)
 
-    return target_time.strftime('%H:%M')
+    target_time_to_return = target_time.strftime('%H:%M')
+
+    return target_time_to_return
 
 
 def send_email(subject: str, message: str, recipient: str) -> bool:
