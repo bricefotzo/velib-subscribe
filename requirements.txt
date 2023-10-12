@@ -1,0 +1,7 @@
+streamlit==1.27.2
+streamlit-folium==0.15.0
+folium
+pymongo
+python-dotenv
+pandas
+requests
