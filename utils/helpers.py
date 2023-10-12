@@ -8,7 +8,7 @@ from api.external import get_dataset_info
 from settings import EMAIL_USER, EMAIL_PASS, GITHUB_TOKEN
 
 
-def convert_to_local_time(time_str: str, from_tz_str: str = "UTC", to_tz_str: str = "Europe/Paris") -> str:
+def convert_to_local_time(time_str: str, from_tz_str: str = "Europe/Paris", to_tz_str: str = "UTC") -> str:
     """
     Convert time string from one timezone to another.
 
