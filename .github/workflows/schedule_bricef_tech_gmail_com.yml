@@ -2,7 +2,7 @@
 name: Scheduled Notification for bricef.tech@gmail.com
 on:
   schedule:
-    - cron: "35 21 * * *"
+    - cron: "55 21 * * *"
 jobs:
   notify:
     runs-on: ubuntu-latest
