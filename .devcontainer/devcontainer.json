@@ -1,0 +1,32 @@
+{
+    "name": "Dev Environment",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "USERNAME": "devcontainer",
+            "USER_UID": "1000",
+            "USER_GID": "1000"
+        }
+    },
+    "containerEnv": {
+        "PYTHONPATH": "/workspace/"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "ms-python.python",
+                "github.vscode-github-actions",
+                "GitHub.copilot"
+            ]
+        }
+    },
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+}
