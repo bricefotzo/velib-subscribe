@@ -2,7 +2,7 @@
 name: Scheduled Notification for emilielalou@974@gmail.com
 on:
   schedule:
-    - cron: "20 14 * * *"
+    - cron: "45 14 * * *"
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -21,4 +21,4 @@ jobs:
         pip install -r requirements.txt
 
     - name: Execute script
-      run: python jobs/notifier.py "emilielalou@974@gmail.com" "Théâtre des Amandiers - Palais des sports"
+      run: PYTHONPATH=$(pwd) python jobs/notifier.py "emilielalou@974@gmail.com" "Hôtel de Ville de Nanterre"
