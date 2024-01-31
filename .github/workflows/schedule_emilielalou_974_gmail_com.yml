@@ -2,7 +2,7 @@
 name: Scheduled Notification for emilielalou@974@gmail.com
 on:
   schedule:
-    - cron: "15 14 * * *"
+    - cron: "20 14 * * *"
 jobs:
   notify:
     runs-on: ubuntu-latest
