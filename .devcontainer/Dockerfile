@@ -1,22 +1,6 @@
 # Start with Debian
 FROM python:3.10-buster
 
-# # Install system dependencies
-# RUN apt-get update && apt-get install -y \
-#     curl \
-#     ca-certificates \
-#     apt-transport-https \
-#     lsb-release \
-#     gnupg2 \
-#     tree \
-#     git \
-#     mypy \
-#     python3.9 \
-#     python3-pip
-
-
-# RUN pip install pre-commit uvicorn fastapi black pytest mypy pytest-order
-# Set the working directory
 WORKDIR /workspace
 
 COPY requirements.txt .
