@@ -2,7 +2,7 @@
 name: Scheduled Notification for fotzotalom@gmail.com
 on:
   schedule:
-    - cron: "12 16 * * *"
+    - cron: "20 17 * * *"
 jobs:
   notify:
     runs-on: ubuntu-latest
