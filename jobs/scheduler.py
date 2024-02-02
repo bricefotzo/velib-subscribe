@@ -44,6 +44,11 @@ jobs:
 
     - name: Execute script
       run: PYTHONPATH=$(pwd) python jobs/notifier.py "{email}" "{station}"
+      env:
+        MONGO_URI: ${{ secrets.MONGO_URI }}
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 """
     return github_config
 
